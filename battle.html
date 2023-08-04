@@ -26,8 +26,7 @@
 
     #main-header {font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0%;}
 
-    #butt1 {position: relative; left: 40%; width: 20%; background-color: white;}
-    #primary-link{color: rgb(151, 22, 215); text-align: center;}
+    
 
     #primary-div{ 
     z-index:1;   
@@ -106,12 +105,8 @@
 Pokémon Battle Simulator
 </h1>
 
-<button type="button" id="butt1">Wait, who's getting a job?</button>
-<p class="primary-para">
-<a id="primary-link" href="http://youtube.com"></a>
-<br>
-Howdy, howdy, my name is Christopher Davisson. I'm a <br>
 
+<p class="primary-para">
 
 </p>
 
@@ -148,21 +143,6 @@ Howdy, howdy, my name is Christopher Davisson. I'm a <br>
 
 
 <script>
-/* Set up a button that shows a guy pointing at himself when clicked. */
-var testEl = document.getElementById("primary-link");
-
-var beenClicked=false;
-
-var buttEl= document.getElementById("butt1");
-
-var buttClick = function() {
-    if (beenClicked === false){
-    testEl.innerHTML= '<image src="https://c8.alamy.com/comp/B70G4W/average-forty-year-old-guy-pointing-to-himself-with-a-questioning-B70G4W.jpg" alt="puupy" style="width: 100%;">';
-    beenClicked=true;}
-    else{testEl.innerHTML=''; beenClicked=false;};
-};
-
-buttEl.addEventListener("click", buttClick);
 
 /* Sets up type funtions and moves. Types have a value for their damage multiplier when hit by other types, and functions to return the damage multiplier for the passed type and to check if they should award Same Type Attack Bonus.  */
 var type = function(name, fire, water, grass, typenull)
