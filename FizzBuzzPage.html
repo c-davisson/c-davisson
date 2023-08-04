@@ -12,14 +12,7 @@
     }
 
 
-      #primary-div{ 
-    z-index:1;   
-    position: relative;
-    margin-left:15%;
-    margin-right: 15%;
-    background-color: rgb(129, 129, 129);
-    top: 0em;}
-    .primary-para{font-size: 2em;}
+
 
    
     #top-bar{
@@ -89,6 +82,10 @@
     top: 0em;
     }
 
+      #secondary-div{
+            position: relative; left: 40%; width: 20%;
+      }
+
       p {margin-left: 5%; margin-right: 5%; font-size: 50px;}
     
 </style>
@@ -102,9 +99,10 @@
 
       
 <div id="primary-div">
-      <input id="digits" type="number" Placeholder="How Many Digits?"/>
-      <button id="start">Start</button>
-<p id="output"> </p>
+      <div id="secondary-div">
+            <input id="digits" type="number" Placeholder="How Many Digits?"/>
+            <button id="start">Start</button></div>
+      <p id="output"> </p>
 </div>
 
 <script src="fizzBuzz.js"></script>
