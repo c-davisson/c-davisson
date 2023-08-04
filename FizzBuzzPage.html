@@ -99,18 +99,22 @@
    <a id="bar-box-3" href="https://github.com/c-davisson/c-davisson/blob/main/Tic-Tac-Toe.cpp">Tic-Tac-Toe</a>
 </div>
 
+
+      
 <div id="primary-div">
+      <input id="digits" type="number" Placeholder="How Many Digits?"/>
 <p id="output"> </p>
 </div>
 
 <script src="fizzBuzz.js"></script>
 <script>
-   var output=document.getElementById("output");
-   console.log(fizzBuzz(1));
+      var output=document.getElementById("output");
+      var digits=document.getElementById("digits");
+      console.log(fizzBuzz(1));
    
-   for (var i = 1; i < 101; i++){
-       output.innerHTML+='  '+fizzBuzz(i)+',  ';
-    };
+      for (var i = 1; i < math.abs(eval(digits.value)); i++){
+            output.innerHTML+='  '+fizzBuzz(i)+',  ';
+      };
 
 </script>
 </body>
