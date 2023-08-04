@@ -114,13 +114,16 @@
       var start=document.getElementById("start");
       console.log(fizzBuzz(1));
 
-      start.addEventListener("click", startFB);
 
       var startFB= function(){
             for (var i = 1; i < math.abs(eval(digits.value)); i++){
                   output.innerHTML+='  '+fizzBuzz(i)+',  ';
             };
       }
+
+      
+      start.addEventListener("click", startFB);
+      
 </script>
 </body>
 </html>
