@@ -144,7 +144,8 @@
       var startFB= function(){
             output.innerHTML="";
             for (var i = 1; i <= Math.abs(eval(digits.value)); i++){
-                  output.innerHTML+='  '+fizzBuzz(i)+',  ';
+		if (i==Math.abs(eval(digits.value) {output.innerHTML+='  '+fizzBuzz(i)+'.'}
+		else {output.innerHTML+='  '+fizzBuzz(i)+',  ';}
             };
       }
 
