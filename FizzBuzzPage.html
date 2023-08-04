@@ -84,10 +84,13 @@
     		z-index:1;   
 	 	margin-left:25%;
     		margin-right: 25%;
-    		background-color: rgb(129, 129, 129);
     		top: 0em;
 		border: solid;
     		}
+	#secondary-div{
+		background-color: rgb(129, 129, 129);
+		top: 0em;
+		}
 
       #digits{
              position: relative; left: 40%; width: 20%; margin-top: 2em;
@@ -124,8 +127,9 @@
 
  <!--Primary Div provides gray background and bounding. -->     
 <div id="primary-div">
-            <input id="digits" type="number" Placeholder="How Many Digits?"/><br>
-            <button id="start">Start</button>
+	<div id="secondary-div">
+        	<input id="digits" type="number" Placeholder="How Many Digits?"/><br>
+        	<button id="start">Start</button></div>
       <p id="output"> </p></div>
 
 
