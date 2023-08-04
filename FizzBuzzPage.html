@@ -103,6 +103,7 @@
       
 <div id="primary-div">
       <input id="digits" type="number" Placeholder="How Many Digits?"/>
+      <button id="start">Start</button>
 <p id="output"> </p>
 </div>
 
@@ -110,12 +111,16 @@
 <script>
       var output=document.getElementById("output");
       var digits=document.getElementById("digits");
+      var start=document.getElementById("start");
       console.log(fizzBuzz(1));
-   
-      for (var i = 1; i < math.abs(eval(digits.value)); i++){
-            output.innerHTML+='  '+fizzBuzz(i)+',  ';
-      };
 
+      start.addEventListener("click", startFB);
+
+      var startFB= Function(){
+            for (var i = 1; i < math.abs(eval(digits.value)); i++){
+                  output.innerHTML+='  '+fizzBuzz(i)+',  ';
+            };
+      }
 </script>
 </body>
 </html>
