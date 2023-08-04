@@ -86,7 +86,7 @@
             position: relative; left: 40%; width: 20%; margin-top: 2em;
       }
       #start{
-            position: relative; left: 45%; width: 10%;
+            position: static; left: 45%; width: 10%;
       }
 
       p {margin-left: 5%; margin-right: 5%; font-size: 50px;}
@@ -117,6 +117,7 @@
 
 
       var startFB= function(){
+            output.innerHTML="";
             for (var i = 1; i < Math.abs(eval(digits.value)); i++){
                   output.innerHTML+='  '+fizzBuzz(i)+',  ';
             };
