@@ -88,33 +88,42 @@
 <div id="primary-div">
 <h1 id="main-header">Pokémon Battle Simulator</h1>
 
-<p class="primary-para"></p>
+<p class="primary-para">This is a battle simulator viewable in the console. Pokemon have unique stats related to health, defense, attack, and who moves first. Types are 2x effective against some, and .5 resistant to others: fire beats grass, grass beats water, and water beats fire. Moves do extra damage if their type matches the user's.</p>
 
+<div>
+<select id="selectPkmn1" name="pkmn1" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
+<select id="selectPkmn2" name="pkmn2" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
+
+
+<button id="StartBattle" type="button">Start Battle</button>
+    
 <button type="button" id="butt2">Solar Beam</button>
 <button type="button" id="butt3">Hydro Pump</button>
 <button type="button" id="butt4">Fire Blast</button>
 <button type="button" id="butt5">Fire Fang</button>
-  
+</div>
+
+<div>
 <input id="HTMLpkmnName" type="text" Placeholder="Pokemon Nickname?"/>
 <input id="HTMLpkmnHP" type="number" Placeholder="Pokemon HP?"/>
 <input id="HTMLpkmnSpd" type="number" Placeholder="Pokemon Speed?"/>
 <input id="HTMLpkmnSpec" type="number" Placeholder="Pokemon Special?"/>
 <input id="HTMLpkmnAtk" type="number" Placeholder="Pokemon Attack?"/>
 <input id="HTMLpkmnDef" type="number" Placeholder="Pokemon Defense?"/>
+
+<select id="HTMLpkmnT1" name="pkmnType1" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
+<select id="HTMLpkmnT2" name="pkmnType2" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
+    
+<!-- Move selection currently irrelevant but loadbearing, but planned to be used alongside unique move creation options. -->
 <select id="HTMLpkmnM1" name="pkmnMove1" size="4"><option value="hydroPump"> Hydro Pump</option><option value="solarBeam"> Solar Beam</option><option value="fireBlast"> Fire Blast</option><option value="fireFang"> Fire Fang</option> </select>
 <select id="HTMLpkmnM2" name="pkmnMove2" size="4"><option value="hydroPump"> Hydro Pump</option><option value="solarBeam"> Solar Beam</option><option value="fireBlast"> Fire Blast</option><option value="fireFang"> Fire Fang</option> </select>
 <select id="HTMLpkmnM3" name="pkmnMove3" size="4"><option value="hydroPump"> Hydro Pump</option><option value="solarBeam"> Solar Beam</option><option value="fireBlast"> Fire Blast</option><option value="fireFang"> Fire Fang</option> </select>
 <select id="HTMLpkmnM4" name="pkmnMove4" size="4"><option value="hydroPump"> Hydro Pump</option><option value="solarBeam"> Solar Beam</option><option value="fireBlast"> Fire Blast</option><option value="fireFang"> Fire Fang</option> </select>
 
-<select id="HTMLpkmnT1" name="pkmnType1" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
-<select id="HTMLpkmnT2" name="pkmnType2" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
 
 <button id="HTMLpkmnGenerate" type="button" id="butt6">Generate New Pokemon</button>
+</div>
 
-<select id="selectPkmn1" name="pkmn1" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
-<select id="selectPkmn2" name="pkmn2" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
-
-<button id="StartBattle" type="button">Start Battle</button>
 <button type="button" id="butt8"></button>
 </div>
 <script>
@@ -143,6 +152,7 @@ var grassType= new type ("grass", 2, .5, .5, 1);
 var waterType= new type ("water", .5, .5, 2, 1);
 var typenull= new type ("typenull", 1, 1, 1, 1);
 
+//Moves have a type, power, and variable to check if it is "physical" or "special," each of which are associated with different stats.
 var move = function(type, basePower, physical){
     this.type=type;
     this.basePower=basePower;
@@ -209,7 +219,9 @@ battle.prototype.turn = function(move){
 };
 
 var runBattle = new battle();
-
+var startBatt= document.getElementById("StartBattle");
+startBatt.addEventListener("click", runBattle.begin);
+    
 /* Script that governs button/input behaviour. */
 
 var grassEl= document.getElementById("butt2");
@@ -241,9 +253,8 @@ var  newT2= document.getElementById("HTMLpkmnT2");
 var genButt= document.getElementById("HTMLpkmnGenerate");
 var pkmnSelect1= document.getElementById("selectPkmn1");
 var pkmnSelect2= document.getElementById("selectPkmn2");
-var startBatt= document.getElementById("StartBattle");
 
-
+//Function generates a new Pokemon on button click, and adds it to the selectable options.
 var genClick=function(){
     var newmon ={hp: eval(newHP.value), spd: eval(newSpd.value), spec: eval(newSpec.value), atk: eval(newAtk.value), def: eval(newDef.value), m1: eval(newM1.value), m2: eval(newM2.value), m3: eval(newM3.value), m4: eval(newM4.value), t1: eval(newT1.value), t2: eval(newT2.value), nick: newNick.value};
     Pokemon.push(newmon);
@@ -254,7 +265,6 @@ var genClick=function(){
 };
 
 genButt.addEventListener("click", genClick);
-startBatt.addEventListener("click", runBattle.begin);
 
 </script>
 </body>
