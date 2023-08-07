@@ -1,4 +1,4 @@
-<html>
+<!DOCTYPE html>
 <head>
 <title>Battle</title>
 
@@ -19,18 +19,7 @@
     width:100%;
     }
 
-    #main-header {font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0%;}  
 
-    #primary-div{ 
-    z-index:1;   
-    position: relative;
-    margin-left:15%;
-    margin-right: 15%;
-    background-color: rgb(129, 129, 129);
-    top: 0em;}
-    .primary-para{font-size: 2em;}
-
-    
     #bar-box-1{
     height: 100%;
     font-size: 3em;
@@ -74,7 +63,21 @@
     background-color: rgb(0, 0, 0);}
     #bar-box-3:hover{background-color: rgb(69, 69, 69);}
 
-    #main-header {font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0%;}
+    #main-header {font-family: 'Courier New', Courier, monospace; text-align: center; margin: 0%;}  
+
+    #primary-div{ 
+    z-index:1;   
+    position: relative;
+    margin-left:15%;
+    margin-right: 15%;
+    background-color: rgb(129, 129, 129);
+    top: 0em;}
+    .primary-para{font-size: 2em;}
+    .pokemon1 {display:inline; align: left;}
+    /*#nick1{ text-decoration: underline;}
+    #hp1 { text-decoration: underline;}*/
+    .pokemon2 {display:inline;} 
+
 
 </style>
 <body>
@@ -87,30 +90,46 @@
 
 <div id="primary-div">
 <h1 id="main-header">Pokémon Battle Simulator</h1>
-
+<!--
 <p class="primary-para">This is a battle simulator viewable in the console. Pokemon have unique stats related to health, defense, attack, and who moves first. Types are 2x effective against some, and .5 resistant to others: fire beats grass, grass beats water, and water beats fire. Moves do extra damage if their type matches the user's.</p>
+-->
 
+<div class="" id="">
+<p id="nick1" class="pokemon1"></p><p id="hp1" class="pokemon1"></p>
+<button id="p1t1" class="pokemon1"></button>
+<button id="p1t2" class="pokemon1"></button></div>
+<div class="" id="">
+<p id="nick2" class="pokemon2"></p>
+<p id="hp2" class="pokemon2"></p>
+<button id="p2t1" class="pokemon2"></button>
+<button id="p2t2" class="pokemon2"></button></div>
+<div>
+<br>
+<button type="button" id="butt1"></button>
+<button type="button" id="butt2"></button>
+<button type="button" id="butt3"></button>
+<button type="button" id="butt4"></button>
+</div>
+
+
+<div><p>Start a New Battle</p></div>
 <div>
 <select id="selectPkmn1" name="pkmn1" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
 <select id="selectPkmn2" name="pkmn2" size="2"><option value="0">Blastiose</option><option value="1">Charizard</option></select>
-
-
-<button id="StartBattle" type="button">Start Battle</button>
     
-<button type="button" id="butt2">Solar Beam</button>
-<button type="button" id="butt3">Hydro Pump</button>
-<button type="button" id="butt4">Fire Blast</button>
-<button type="button" id="butt5">Fire Fang</button>
+<button id="StartBattle" type="button">Start Battle</button>
 </div>
-
+<div><p>Create a New Pokemon</p></div>
+<div><button id="HTMLpkmnGenerate" type="button" id="butt6">Generate New Pokemon</button></div><br>
 <div>
 <input id="HTMLpkmnName" type="text" Placeholder="Pokemon Nickname?"/>
 <input id="HTMLpkmnHP" type="number" Placeholder="Pokemon HP?"/>
 <input id="HTMLpkmnSpd" type="number" Placeholder="Pokemon Speed?"/>
+</div><div>
 <input id="HTMLpkmnSpec" type="number" Placeholder="Pokemon Special?"/>
 <input id="HTMLpkmnAtk" type="number" Placeholder="Pokemon Attack?"/>
 <input id="HTMLpkmnDef" type="number" Placeholder="Pokemon Defense?"/>
-
+</div><div>
 <select id="HTMLpkmnT1" name="pkmnType1" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
 <select id="HTMLpkmnT2" name="pkmnType2" size="4"><option value="waterType"> Water</option><option value="grassType"> Grass</option><option value="fireType"> Fire</option><option value="typenull"> None</option> </select>
     
@@ -121,20 +140,21 @@
 <select id="HTMLpkmnM4" name="pkmnMove4" size="4"><option value="hydroPump"> Hydro Pump</option><option value="solarBeam"> Solar Beam</option><option value="fireBlast"> Fire Blast</option><option value="fireFang"> Fire Fang</option> </select>
 
 
-<button id="HTMLpkmnGenerate" type="button" id="butt6">Generate New Pokemon</button>
+
 </div>
 
-<button type="button" id="butt8"></button>
+
 </div>
 <script>
     
 /* Sets up type funtions and moves. Types have a value for their damage multiplier when hit by other types, and functions to return the damage multiplier for the passed type and to check if they should award Same Type Attack Bonus.  */
-var type = function(name, fire, water, grass, typenull)
+var type = function(name, fire, water, grass, typenull, color)
 {   this.name = name;
     this.fire=fire;
     this.water=water;
     this.grass=grass;
     this.typenull=typenull;
+    this.color=color;
 };
 
 type.prototype.returnMatch = function(type2) {
@@ -147,27 +167,28 @@ type.prototype.STAB=function(move){
     else {return(1);};
 };
 
-var fireType= new type ("fire", .5, 2, .5, 1);
-var grassType= new type ("grass", 2, .5, .5, 1);
-var waterType= new type ("water", .5, .5, 2, 1);
-var typenull= new type ("typenull", 1, 1, 1, 1);
+var fireType= new type ("fire", .5, 2, .5, 1, "red");
+var grassType= new type ("grass", 2, .5, .5, 1, "green");
+var waterType= new type ("water", .5, .5, 2, 1, "blue");
+var typenull= new type ("typenull", 1, 1, 1, 1, "grey");
 
 //Moves have a type, power, and variable to check if it is "physical" or "special," each of which are associated with different stats.
-var move = function(type, basePower, physical){
+var move = function(type, basePower, physical, nick){
     this.type=type;
     this.basePower=basePower;
     this.physical=physical;
+    this.nick=nick;
 };
 
-var hydroPump = new move(waterType, 120, false);
-var solarBeam = new move(grassType, 120, false);
-var fireBlast = new move(fireType, 120, false);
-var fireFang = new move(fireType, 100, true);
+var hydroPump = new move(waterType, 120, false, "Hydro Pump");
+var solarBeam = new move(grassType, 120, false, "Solar Beam");
+var fireBlast = new move(fireType, 120, false, "Fire Blast");
+var fireFang = new move(fireType, 100, true, "Fire Fang");
 
 /* Stores information on pokemon used by the battle functions. */
 var Pokemon = [
-    {hp: 100,  spec: 80, spd:60, atk: 80, def: 120, m1: fireBlast, m2: hydroPump, m3: fireEl, m4: solarBeam, t1: waterType, t2: typenull, nick: "Blastoise"},
-    {hp: 100,  spec: 90, spd: 80, atk: 90, def: 80, m1: fireBlast, m2: fireFang, m3: hydroPump, m: solarBeam, t1: fireType, t2: typenull, nick:"Charizard"},
+    {hp: 100,  spec: 80, spd:60, atk: 80, def: 120, m1: fireBlast, m2: hydroPump, m3: fireFang, m4: solarBeam, t1: waterType, t2: typenull, nick: "Blastoise"},
+    {hp: 100,  spec: 90, spd: 80, atk: 90, def: 80, m1: fireBlast, m2: fireFang, m3: hydroPump, m4: solarBeam, t1: fireType, t2: typenull, nick: "Charizard"},
  ];
 
 var pkmnSelect1= document.getElementById("selectPkmn1");
@@ -176,7 +197,33 @@ var pkmnSelect2= document.getElementById("selectPkmn2");
 var pkmn1= Pokemon[0];
 var pkmn2= Pokemon[1];
 
+/* Script that governs button/input behaviour. */
+
+var m1El= document.getElementById("butt1");
+var m1Click = function() {runBattle.turn(activePKMN.m1);};
+var m2El= document.getElementById("butt2");
+var m2Click = function() {runBattle.turn(activePKMN.m2);};
+var m3El= document.getElementById("butt3");
+var m3Click = function() {runBattle.turn(activePKMN.m3);};
+var m4El= document.getElementById("butt4");
+var m4Click = function() {runBattle.turn(activePKMN.m4);};
+
+
+m1El.addEventListener("click", m1Click);
+m2El.addEventListener("click", m2Click);
+m3El.addEventListener("click", m3Click);
+m4El.addEventListener("click", m4Click);
+
 /* Function that frames a Pokemon battle. */
+
+var php1=document.getElementById("hp1");
+var php2=document.getElementById("hp2");
+var p1t1=document.getElementById("p1t1");
+var p1t2=document.getElementById("p1t2");
+var p2t1=document.getElementById("p2t1");
+var p2t2=document.getElementById("p2t2");
+var pNick1=document.getElementById("nick1");
+var pNick2=document.getElementById("nick2");
 
 var battle = function(){};
 battle.prototype.begin = function(){
@@ -194,17 +241,38 @@ battle.prototype.begin = function(){
         activePKMN=pkmn2;
         nonActPKMN=pkmn1;
     }
+
+    m1El.innerHTML=activePKMN.m1.nick;
+    m1El.style.color=activePKMN.m1.type.color;
+    m2El.innerHTML=activePKMN.m2.nick;
+    m2El.style.color=activePKMN.m2.type.color;
+    m3El.innerHTML=activePKMN.m3.nick;
+    m3El.style.color=activePKMN.m3.type.color;
+    m4El.innerHTML=activePKMN.m4.nick;
+    m4El.style.color=activePKMN.m4.type.color;
+    
+    php1.innerHTML=p1hp+" HP";
+    php2.innerHTML=p2hp+" HP";
+
+    p1t1.style.backgroundColor=pkmn1.t1.color;
+    p1t2.style.backgroundColor=pkmn1.t2.color;
+    p2t1.style.backgroundColor=pkmn2.t1.color;
+    p2t2.style.backgroundColor=pkmn2.t2.color;
+
+    pNick1.innerHTML=pkmn1.nick+" ";
+    pNick2.innerHTML=pkmn2.nick+" ";
+
 };
 
 battle.prototype.turn = function(move){      
-    if (move.physical===true){console.log(activePKMN.spec);
+    if (move.physical===true){
         var hpPointer=Math.round((activePKMN.atk*move.basePower/10)/(nonActPKMN.def/5)*(nonActPKMN.t1.returnMatch([move.type.name]))*(nonActPKMN.t2.returnMatch([move.type.name]))*(activePKMN.t1.STAB(move))*(activePKMN.t2.STAB(move)));
     } else{
         var hpPointer=Math.round((activePKMN.spec*move.basePower/10)/(nonActPKMN.spec/5)*(nonActPKMN.t1.returnMatch([move.type.name]))*(nonActPKMN.t2.returnMatch([move.type.name]))*(activePKMN.t1.STAB(move))*(activePKMN.t2.STAB(move)));
     };
 
-    if (activePKMN==pkmn1) {p2hp-=hpPointer; console.log(p2hp);}
-    else {p1hp-=hpPointer; console.log(p1hp);};
+    if (activePKMN==pkmn1) {p2hp-=hpPointer; console.log(p2hp); php2.innerHTML=p2hp+" HP";}
+    else {p1hp-=hpPointer; console.log(p1hp); php1.innerHTML=p1hp+" HP";};
    
     if (activePKMN===pkmn2){
         activePKMN=pkmn1;
@@ -212,44 +280,39 @@ battle.prototype.turn = function(move){
     else {activePKMN=pkmn2;
         nonActPKMN=pkmn1;};
 
-    if (this.p1hp<=0){console.log(pkmn2.nick+" fainted! Game over.")}
-    else if (this.p2hp<=0){console.log(pkmn1.nick+" fainted! Game over.")}
+    if (p1hp<=0){console.log(pkmn1.nick+" fainted! Game over.")}
+    else if (p2hp<=0){console.log(pkmn2.nick+" fainted! Game over.")}
     else {
     console.log(activePKMN.nick + ", it's your turn!" );};
+
+    m1El.innerHTML=activePKMN.m1.nick;
+    m1El.style.color=activePKMN.m1.type.color;
+    m2El.innerHTML=activePKMN.m2.nick;
+    m2El.style.color=activePKMN.m2.type.color;
+    m3El.innerHTML=activePKMN.m3.nick;
+    m3El.style.color=activePKMN.m3.type.color;
+    m4El.innerHTML=activePKMN.m4.nick;
+    m4El.style.color=activePKMN.m4.type.color;
 };
 
 var runBattle = new battle();
 var startBatt= document.getElementById("StartBattle");
 startBatt.addEventListener("click", runBattle.begin);
     
-/* Script that governs button/input behaviour. */
 
-var grassEl= document.getElementById("butt2");
-var grassClick = function() {runBattle.turn(solarBeam);};
-var waterEl= document.getElementById("butt3");
-var waterClick = function() {runBattle.turn(hydroPump);};
-var fireEl= document.getElementById("butt4");
-var fireClick = function() {runBattle.turn(fireBlast);};
-var ffEl= document.getElementById("butt5");
-var ffClick = function() {runBattle.turn(fireFang);};
-
-
-grassEl.addEventListener("click", grassClick);
-waterEl.addEventListener("click", waterClick);
-fireEl.addEventListener("click", fireClick);
 
 var newNick= document.getElementById("HTMLpkmnName");
-var  newHP= document.getElementById("HTMLpkmnHP");
-var  newSpd= document.getElementById("HTMLpkmnSpd");
-var  newSpec= document.getElementById("HTMLpkmnSpec");
-var  newAtk= document.getElementById("HTMLpkmnAtk");
-var  newDef= document.getElementById("HTMLpkmnDef");
-var  newM1= document.getElementById("HTMLpkmnM1");
-var  newM2= document.getElementById("HTMLpkmnM2");
-var  newM3= document.getElementById("HTMLpkmnM3");
-var  newM4= document.getElementById("HTMLpkmnM4");
-var  newT1= document.getElementById("HTMLpkmnT1");
-var  newT2= document.getElementById("HTMLpkmnT2");
+var newHP= document.getElementById("HTMLpkmnHP");
+var newSpd= document.getElementById("HTMLpkmnSpd");
+var newSpec= document.getElementById("HTMLpkmnSpec");
+var newAtk= document.getElementById("HTMLpkmnAtk");
+var newDef= document.getElementById("HTMLpkmnDef");
+var newM1= document.getElementById("HTMLpkmnM1");
+var newM2= document.getElementById("HTMLpkmnM2");
+var newM3= document.getElementById("HTMLpkmnM3");
+var newM4= document.getElementById("HTMLpkmnM4");
+var newT1= document.getElementById("HTMLpkmnT1");
+var newT2= document.getElementById("HTMLpkmnT2");
 var genButt= document.getElementById("HTMLpkmnGenerate");
 var pkmnSelect1= document.getElementById("selectPkmn1");
 var pkmnSelect2= document.getElementById("selectPkmn2");
